@@ -239,10 +239,10 @@ server <- function(input,output,session){
       }
       id <- showNotification("Load CER capacity data", duration=1000)
       # Load in the install data from CSV.
-      intall_data_file <- "cumulative_capacity_and_number_20190121.csv"
-      install_data <- read.csv(file=intall_data_file, header=TRUE, 
-                               stringsAsFactors = FALSE)
-      v$install_data <- process_install_data(install_data)
+      #intall_data_file <- "cumulative_capacity_and_number_20190121.csv"
+      #install_data <- read.csv(file=intall_data_file, header=TRUE, 
+      #                         stringsAsFactors = FALSE)
+      #v$install_data <- process_install_data(install_data)
       postcode_data_file <- "PostcodesLatLong.csv"
       postcode_data <- read.csv(file=postcode_data_file, header=TRUE, 
                                stringsAsFactors = FALSE)
@@ -374,7 +374,7 @@ server <- function(input,output,session){
                              checkIcon=list(yes=icon("ok", lib="glyphicon"), 
                                             no=icon("remove", lib="glyphicon")))
         })
-      show("raw_upscale")
+      #show("raw_upscale")
       show("pst_agg")
       show("grouping_agg")
       show("manufacturer_agg")
