@@ -949,7 +949,7 @@ server <- function(input,output,session){
   })
   
   # Save data from aggregate pv power plot
-  observe({
+  observeEvent(input$batch_save, {
     variables <- c('time_series_file', 'circuit_details_file', 'site_details_file', 'frequency_data_file', 'region',
                    'duration', 'standards', 'responses', 'postcodes', 'manufacturers', 'models', 'sites', 'circuits', 
                    'zones', 'compliance', 'offsets', 'size_groupings', 'clean', 'raw_upscale', 'pst_agg', 
