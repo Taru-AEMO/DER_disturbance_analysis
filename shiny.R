@@ -883,7 +883,7 @@ server <- function(input,output,session){
   })
   
   # Save data from aggregate pv power plot
-  observe({
+  observeEvent(input$save_agg_power,{
     volumes <- getVolumes()
     shinyFileSave(input, "save_agg_power", roots=volumes, session=session)
     fileinfo <- parseSavePath(volumes, input$save_agg_power)
@@ -893,7 +893,7 @@ server <- function(input,output,session){
   })
   
   # Save underlying data by circuit id and time stamp
-  observe({
+  observeEvent(input$save_underlying,{
     volumes <- getVolumes()
     shinyFileSave(input, "save_underlying", roots=volumes, session=session)
     fileinfo <- parseSavePath(volumes, input$save_underlying)
@@ -905,7 +905,7 @@ server <- function(input,output,session){
   })
   
   # Save circuit summary
-  observe({
+  observeEvent(input$save_circuit_summary,{
     volumes <- getVolumes()
     shinyFileSave(input, "save_circuit_summary", roots=volumes, session=session)
     fileinfo <- parseSavePath(volumes, input$save_circuit_summary)
@@ -917,7 +917,7 @@ server <- function(input,output,session){
   })
   
   # Save data from sample count table
-  observe({
+  observeEvent(input$save_sample_count,{
     volumes <- getVolumes()
     shinyFileSave(input, "save_sample_count", roots=volumes, session=session)
     fileinfo <- parseSavePath(volumes, input$save_sample_count)
@@ -925,7 +925,7 @@ server <- function(input,output,session){
   })
   
   # Save data on aggregated response categories
-  observe({
+  observeEvent(input$save_response_count,{
     volumes <- getVolumes()
     shinyFileSave(input, "save_response_count", roots=volumes, session=session)
     fileinfo <- parseSavePath(volumes, input$save_response_count)
@@ -933,7 +933,7 @@ server <- function(input,output,session){
   })
   
   # Save data on zones
-  observe({
+  observeEvent(input$save_zone_count, {
     volumes <- c(dr="C:\\")
     shinyFileSave(input, "save_zone_count", roots=volumes, session=session)
     fileinfo <- parseSavePath(volumes, input$save_zone_count)
@@ -941,7 +941,7 @@ server <- function(input,output,session){
   })
   
   # Save data on response percentage by distance
-  observe({
+  observeEvent(input$save_distance_response, {
     volumes <- getVolumes()
     shinyFileSave(input, "save_distance_response", roots=volumes, session=session)
     fileinfo <- parseSavePath(volumes, input$save_distance_response)
