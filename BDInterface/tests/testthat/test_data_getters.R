@@ -26,7 +26,7 @@ expected_circuit_details <- load_test_file(circuit_details_path_name)
 # Create the DBInterface and test creating the database.
 if (file.exists("test.db")) {file.remove("test.db")}
 dp <- DBInterface$new()
-dp$connect_to_new_database("test.db")
+dp$connect_to_database("test.db")
 dp$build_database(timeseries = timeseries_path_name,
                   circuit_details = circuit_details_path_name,
                   site_details = site_details_path_name)

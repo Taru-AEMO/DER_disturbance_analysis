@@ -25,7 +25,7 @@ testthat::test_that("Building works when no column aliases are required.",{
   # Create the DBInterface and test creating the database.
   if (file.exists("test.db")) {file.remove("test.db")}
   dp <- DBInterface$new()
-  dp$connect_to_new_database("test.db")
+  dp$connect_to_database("test.db")
   dp$build_database(timeseries = timeseries_path_name,
                     circuit_details = circuit_details_path_name,
                     site_details = site_details_path_name)
@@ -54,7 +54,7 @@ testthat::test_that("Building works when there are duplicates in ts data.",{
   # Create the DBInterface and test creating the database.
   if (file.exists("test.db")) {file.remove("test.db")}
   dp <- DBInterface$new()
-  dp$connect_to_new_database("test.db")
+  dp$connect_to_database("test.db")
   dp$build_database(timeseries = timeseries_duplicates_path_name,
                     circuit_details = circuit_details_path_name,
                     site_details = site_details_path_name)
@@ -83,11 +83,10 @@ testthat::test_that("Building works when there are extra headers in the ts data.
   # Create the DBInterface and test creating the database.
   if (file.exists("test.db")) {file.remove("test.db")}
   dp <- DBInterface$new()
-  dp$connect_to_new_database("test.db")
+  dp$connect_to_database("test.db")
   dp$build_database(timeseries = timeseries_with_extra_header,
                     circuit_details = circuit_details_path_name,
                     site_details = site_details_path_name)
-  dp$drop_repeated_headers()
   
   output_timeseries <- dp$get_time_series_data()
   output_site_details <- dp$get_site_details_raw()
@@ -116,7 +115,7 @@ testthat::test_that("test data cleaning works, with batch size
   # Create the DBInterface and test creating the database.
   if (file.exists("test.db")) {file.remove("test.db")}
   dp <- DBInterface$new()
-  dp$connect_to_new_database("test.db")
+  dp$connect_to_database("test.db")
   dp$build_database(timeseries = timeseries_with_missing_durations,
                     circuit_details = circuit_details_path_name,
                     site_details = site_details_path_name)
@@ -152,7 +151,7 @@ testthat::test_that("test calculating duration values works, with batch size
   # Create the DBInterface and test creating the database.
   if (file.exists("test.db")) {file.remove("test.db")}
   dp <- DBInterface$new()
-  dp$connect_to_new_database("test.db")
+  dp$connect_to_database("test.db")
   dp$build_database(timeseries = timeseries_with_missing_durations,
                     circuit_details = circuit_details_path_name,
                     site_details = site_details_path_name)
@@ -188,7 +187,7 @@ testthat::test_that("test calculating duration values works, with batch size
   
   if (file.exists("test.db")) {file.remove("test.db")}
   dp <- DBInterface$new()
-  dp$connect_to_new_database("test.db")
+  dp$connect_to_database("test.db")
   dp$build_database(timeseries = timeseries_with_missing_durations,
                     circuit_details = circuit_details_path_name,
                     site_details = site_details_path_name)
@@ -226,7 +225,7 @@ testthat::test_that("test calculating duration values works, with batch size
   # Create the DBInterface and test creating the database.
   if (file.exists("test.db")) {file.remove("test.db")}
   dp <- DBInterface$new()
-  dp$connect_to_new_database("test.db")
+  dp$connect_to_database("test.db")
   dp$build_database(timeseries = timeseries_with_missing_durations,
                     circuit_details = circuit_details_path_name,
                     site_details = site_details_path_name)
@@ -263,7 +262,7 @@ testthat::test_that("test circuit data cleaning, no cleaning required",{
     # Create the DBInterface and test creating the database.
     if (file.exists("test.db")) {file.remove("test.db")}
     dp <- DBInterface$new()
-    dp$connect_to_new_database("test.db")
+    dp$connect_to_database("test.db")
     dp$build_database(timeseries = timeseries,
                       circuit_details = circuit_details_path_name,
                       site_details = site_details_path_name)
