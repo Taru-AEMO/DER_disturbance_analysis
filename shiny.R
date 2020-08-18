@@ -1098,15 +1098,15 @@ server <- function(input,output,session){
 
   # Save data from aggregate pv power plot
   observeEvent(input$batch_save, {
-    variables <- c('time_series_file', 'circuit_details_file', 'site_details_file', 'frequency_data_file', 'region',
+    variables <- c('database_file', 'frequency_data_file', 'region',
                    'duration', 'standards', 'responses', 'postcodes', 'manufacturers', 'models', 'sites', 'circuits', 
                    'zones', 'compliance', 'offsets', 'size_groupings', 'clean', 'raw_upscale', 'pst_agg', 
-                   'grouping_agg', 'response_agg', 'manufacturer_agg', 'perform_clean', 'model_agg', 'circuit_agg', 
+                   'grouping_agg', 'response_agg', 'manufacturer_agg', 'model_agg', 'circuit_agg', 
                    'zone_agg', 'compliance_agg', 'start_time', 'end_time', 'pre_event_interval', 
                    'agg_on_standard', 'window_length', 'event_latitude', 'event_longitude', 'zone_one_radius', 
                    'zone_two_radius', 'zone_three_radius', 'compliance_threshold', 'start_buffer', 'end_buffer',
                    'end_buffer_responding', 'disconnecting_threshold')
-   values <- c(time_series_file(), circuit_details_file(), site_details_file(), frequency_data_file(), 
+   values <- c(database_name(), frequency_data_file(), 
                    if(is.null(region_to_load())){''}else{region_to_load()},
                    if(is.null(duration())){''}else{duration()}, paste(standards(), collapse='; '), paste(responses(), collapse='; '), 
                    paste(postcodes(), collapse='; '), 
@@ -1115,7 +1115,7 @@ server <- function(input,output,session){
                    paste(zones(), collapse='; '),  paste(compliance(), collapse='; '), paste(offsets(), collapse='; '), 
                    paste(size_groupings(), collapse='; '),
                    paste(clean(), collapse='; '), raw_upscale(), pst_agg(), 
-                   grouping_agg(), response_agg(), manufacturer_agg(), perform_clean(), model_agg(), circuit_agg(), 
+                   grouping_agg(), response_agg(), manufacturer_agg(), model_agg(), circuit_agg(), 
                    zone_agg(), compliance_agg(), 
                    if(length(start_time())==0){''}else{as.character(start_time())}, 
                    if(length(end_time())==0){''}else{as.character(end_time())}, 
@@ -1129,7 +1129,6 @@ server <- function(input,output,session){
                    if(is.null(zone_three_radius())){''}else{zone_three_radius()},
                    compliance_threshold(), start_buffer(), end_buffer(),
                    end_buffer_responding(), disconnecting_threshold())
-   
     meta_data = data.frame(variables, values, stringsAsFactors = FALSE)
     volumes <- getVolumes()
     shinyFileSave(input, "batch_save", roots=volumes, session=session)
