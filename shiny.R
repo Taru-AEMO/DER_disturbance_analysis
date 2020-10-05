@@ -684,6 +684,16 @@ server <- function(input,output,session){
 
     combined_data_f <- filter(v$combined_data, clean %in% clean())
     combined_data_f <- filter(combined_data_f, sum_ac<=100)
+    
+    library(zoo)
+    combined_data_f <- arrange(combined_data_f,ts) %>% group_by(c_id) %>%
+          mutate(power_kW=rollapply(power_kW, 12 ,mean, align='right', fill=NA))
+    combined_data_f <- mutate(combined_data_f, seconds=format(ts, "%S"))
+    combined_data_f <- filter(combined_data_f, seconds == '55')
+    combined_data_f$d <- 60
+    combined_data_f <- data.frame(combined_data_f)
+    combined_data_f <- filter(combined_data_f, !is.na(power_kW))
+    
     site_types <- c("pv_site_net", "pv_site", "pv_inverter_net", "pv_inverter")
     combined_data_f <- filter(combined_data_f, con_type %in% site_types)
     combined_data_f <- filter(combined_data_f, clean %in% clean())
